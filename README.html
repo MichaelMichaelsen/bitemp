@@ -1,0 +1,80 @@
+<h1>bitemp - a test of bitemporarity based on downloaded files</h1>
+<p>bitemp is based on the rules for bitemporarity as stated in the Grunddata program. It is a set of tools to test that the based rules are followed.</p>
+<h2>Overview</h2>
+<p>The script will extract and analyze (test) the file download for one file.
+It is also possible to create a sqlite3 database based on the extracted data.</p>
+<h3>Directory structure</h3>
+<p>The input is the compressed file (zip format) and the system will create one sub directory with the same base name as the input zip file.
+In the sub directory the following files will be created:
+1. <filename>.csv - the extracted data. Only line per object instance.
+1. <filename>.inf - the key information from the file download (the number of object instances.)
+1. <filename>.md  - The test report in Markdown format
+1. <filename>.pdf - the test report in PDF format
+1. <filename>.sum - summary of the tests.
+1. <filename>.log - details for the tests.</p>
+<h2>Install</h2>
+<p>Run ./intall.sh script and the scripts will be copied to the ~/bin directory</p>
+<h2>Usage</h2>
+<p>To run all steps use the analyzeFD.sh script</p>
+<p><code>bash
+analyzeFD.sh &lt;zipfile&gt;</code></p>
+<p>The script will create a sub-directory with the same name as the zipfile</p>
+<h2>Notation</h2>
+<p>Virknintstid and Registreringstid is a time interval.</p>
+<p>virkningstid = [ virkningstidstart .. virkningstidend [
+registreringstid = [ registreringstidstart .. registreringstidend [</p>
+<h2>Bitemporarity rules</h2>
+<ol>
+<li>Every data entity must have registreringstid, virkningstid and status</li>
+<li>Registreringstid and virkningstid must have a start time and a end time (for virkningstid one does not need to specify the virkningstidstart and -end)</li>
+<li>The must be no time overlap for registreringstid. Let Reg1 and Reg2 be the registreringstid for object1 and object2, Then the rules is Reg1 = Reg2 or Reg1 Union Reg2 = Ø</li>
+<li>The must be no time overlap for virkningstid. Let Virk1 and Virk2 be the virkningstid for object1 and object2, Then the rules is Virk1 = Virk2 or Virk1 Union Virk2 = Ø</li>
+</ol>
+<h1>The procedure</h1>
+<p>This is the procedure based on file downloads (Total)</p>
+<ol>
+<li>Get a total file download</li>
+<li>Run indexjson with extraction</li>
+<li>Build a sqlite database</li>
+<li>Run check query</li>
+</ol>
+<h2>Run indexjson with extraction</h2>
+<p>```
+Usage: 
+  perl indexjson.pl --zipfile=<zipfile> [--csv=<csvfile>] [--info=<infofile>]</p>
+<p>$ perl ./indexjson.pl  --zipfile=DAR-Totaludtraek-Ugentlig-JSON_20200223000500.zip 
+```
+The indexjson will generate the following files:
+<filename>.csv - extracted values from the zip data file
+<infofile>.inf - a csv file with som main statistics on the number objects per list
+The csv file contains the following columns:
+1. UUID
+1. STARTPOS
+1. ENDPOS
+1. ENDLINE
+1. LISTNAME
+1. REGTIMEFRA
+1. REGTIMETIL
+1. VIRKTIMEFRA
+1. VIRKTIMETIL
+1. STATUS</p>
+<h2>Run check query</h2>
+<p><code>perl checkrules.pl --csv=&lt;csvfile&gt; --info=&lt;infofile&gt; [--report=&lt;reportfile&gt;]  [--debug]</code></p>
+<h3>Converting the test report from Markdown to pdf</h3>
+<p>This is done using pandoc.
+pandoc
+pandoc --pdf-engine=xelatex -V CJKmainfont="KaiTi" test.md -o test.pdf
+pandoc --pdf-engine=xelatex -V CJKmainfont="DejaVu Sans" ${BASENAME}.md -o ${BASENAME}.pdf
+/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf: DejaVu Sans:style=Book </p>
+<p>pandoc --pdf-engine=xelatex \
+         -V 'mainfont:DejaVuSerif.ttf' \
+         -V 'sansfont:DejaVuSans.ttf' \
+         -V 'monofont:DejaVuSansMono.ttf' \
+         -V 'mathfont:texgyredejavu-math.otf' \
+         ${BASENAME}.md -o ${BASENAME}.pdf</p>
+<p>BASENAME="MON-DAR-DAR-Totaludtraek-USER-JSON-v01_20200620050000"
+pandoc --pdf-engine=xelatex \
+         -V 'mainfont:DejaVuSerif.ttf' \
+         -V 'sansfont:DejaVuSans.ttf' \
+         -V 'monofont:DejaVuSansMono.ttf' \
+         ${BASENAME}.md -o ${BASENAME}.pdf</p>

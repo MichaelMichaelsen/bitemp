@@ -1,0 +1,17 @@
+cp indexjson.pl ~/bin/
+cp testreport.pl ~/bin/
+cp checkrules.pl ~/bin/
+cp createdb.sh ~/bin/
+cp md2pdf.sh ~/bin/
+cp analyzeFD.sh ~/bin
+cp checkbitemp.pl ~/bin
+cp checkbitempdb.pl ~/bin
+cp do.sh ~/bin
+cp lookup.pl ~/bin
+cp dbread.pl ~/bin
+cp generateReport.sh ~/bin
+cp do.sh ~/bin
+cp install.sh ~/bin
+cp updatedb.pl ~/bin
+cp reportFD.sh ~/bin
+cp run.sh ~/bin
