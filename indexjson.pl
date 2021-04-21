@@ -186,7 +186,6 @@ printf "Data size %s (bytes)\n", $dk->format_bytes($bytesize);
 printf "Extimated number of lines %s\n", $dk->format_number($recordsestimated);
 my $progress   = Term::ProgressBar->new($recordsestimated);
 my $next_update= 0;
-my %ids;
 my $tbuf="";
 while (my $buf = <$fh>) {
 
@@ -282,7 +281,7 @@ while (my $buf = <$fh>) {
       $status = $obj->{Value}{status}
     }
     printf $csvfh "%s\n", join(",", $id, $filebefore, $fileafter, $lineno, $list, $regtimefra, $regtimetil, $virktimefra, $virktimetil, $status);
-    $ids{id}++;
+
     $totalnumberofobjects++;
     $numberofobjects{$list}++;
     $filebefore = $fileafter;

@@ -32,7 +32,7 @@ $ruledescriptions[ 3] = "Status må ikke være null (tom)";
 $ruledescriptions[ 4] = "Registreringfra skal være mindre end registreringtil";
 $ruledescriptions[ 5] = "Virkningfra skal være mindre end virkningtil";
 $ruledescriptions[ 6] = "Registreringstid for to instanser må ikke overlappe";
-$ruledescriptions[ 7] = "Overlap (registreringtil(A) > registreringtil(B)";
+$ruledescriptions[ 7] = "Overlap (registreringtil(A) > registreringtil(B))";
 $ruledescriptions[ 8] = "Duplikerede virkning og registrering";
 $ruledescriptions[ 9] = "Huller i registringstidsintervaller";
 
