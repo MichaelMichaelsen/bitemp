@@ -35,6 +35,9 @@ $ruledescriptions[ 6] = "Registreringstid for to instanser må ikke overlappe";
 $ruledescriptions[ 7] = "Overlap (registreringtil(A) > registreringtil(B))";
 $ruledescriptions[ 8] = "Duplikerede virkning og registrering";
 $ruledescriptions[ 9] = "Huller i registringstidsintervaller";
+$ruledescriptions[10] = "Overlappen virkningstidsintervaller";
+$ruledescriptions[11] = "Huller for virkningsintervaller";
+
 
 sub cmpstarttime {
     $a->timestart <=> $b->timestart

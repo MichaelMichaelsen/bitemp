@@ -230,7 +230,7 @@ sub analyseTimeRanges{
     if ( $uuid1 eq $uuid2 &&
          ($virktil1 eq '0' || $virktil2 eq '0') &&
          $virkfra1 gt $virkfra2 &&
-         $virktil1 gt $vrikfra2
+         $virktil1 gt $virkfra2
       ) {
       $rule = 10; 
       if ($debug) {
@@ -247,7 +247,30 @@ sub analyseTimeRanges{
       my @lines;
       push(@lines, $line1, $line2);
       reportincident($resfh, $rule, \@lines);
-    }    
+    }
+    #   
+    # Regel 11. Huller for virkningsintervaller
+    #
+    if ( $uuid1 eq $uuid2 &&
+         ($virktil1 eq '0' || $virktil2 eq '0') &&
+         $virktil1 gt $virktil2
+      ) {
+      $rule = 11; 
+      if ($debug) {
+        printf "-------------------------------------------------------\n";
+        printf "Rule %d\n", $rule;
+        printf "L1:%40s\nL2:%40s\n", $line1,  $line2;
+        printf "Listname %40s %40s\n", $listname1, $listname2;
+        printf "uuid     %40s %40s\n", $uuid1, $uuid2;
+        printf "regfra   %40s %40s\n", $regfra1, $regfra2;
+        printf "regtil   %40s %40s\n", $regtil1, $regtil2;     
+        printf "virkfra  %40s %40s\n", $virkfra1, $virkfra2;
+        printf "virktil  %40s %40s\n", $virktil1, $virktil2;
+      }
+      my @lines;
+      push(@lines, $line1, $line2);
+      reportincident($resfh, $rule, \@lines);
+    }
   }
 }  
 
