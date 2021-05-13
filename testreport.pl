@@ -36,9 +36,12 @@ $ruledescriptions[ 7] = "Overlap (registreringtil(A) > registreringtil(B))";
 $ruledescriptions[ 8] = "Duplikerede virkning og registrering";
 $ruledescriptions[ 9] = "Huller i registringstidsintervaller";
 $ruledescriptions[10] = "Overlappen virkningstidsintervaller";
-$ruledescriptions[11] = "Huller for virkningsintervaller";
-
-
+$ruledescriptions[11] = "Huller for virkningsintervaller eller registreringstid";
+$ruledescriptions[12] = "Huller for virkningsintervaller eller registreringstid";
+$ruledescriptions[13] = "Overlap for registreringsintervaller eller virkningsintervaller";
+$ruledescriptions[14] = "Overlap for registreringsintervaller eller virkningsintervaller";
+$ruledescriptions[15] = "Overlap for registreringsintervaller eller virkningsintervaller";
+$ruledescriptions[16] = "Overlap for registreringsintervaller eller virkningsintervaller";
 sub cmpstarttime {
     $a->timestart <=> $b->timestart
 }

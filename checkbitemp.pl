@@ -93,6 +93,36 @@ sub objcompare{
   return $a->{reg}{fra} <=> $b->{reg}{fra};
 }
 #
+# dumpinfo - report detals about the findings
+#
+sub dumpinfo {
+  my $rule      = shift;
+  my $line1     = shift;
+  my $line2     = shift;
+  my $listname1 = shift;
+  my $listname2 = shift;
+  my $uuid1     = shift;
+  my $uuid2     = shift;
+  my $regfra1   = shift;
+  my $regfra2   = shift;
+  my $regtil1   = shift;
+  my $regtil2   = shift;
+  my $virkfra1  = shift;
+  my $virkfra2  = shift;
+  my $virktil1  = shift;
+  my $virktil2  = shift;
+
+  printf "-------------------------------------------------------\n";
+  printf "Rule %d\n", $rule;
+  printf "L1:%40s\nL2:%40s\n", $line1,  $line2;
+  printf "Listname %40s %40s\n", $listname1, $listname2;
+  printf "uuid     %40s %40s\n", $uuid1, $uuid2;
+  printf "regfra   %40s %40s\n", $regfra1, $regfra2;
+  printf "regtil   %40s %40s\n", $regtil1, $regtil2;     
+  printf "virkfra  %40s %40s\n", $virkfra1, $virkfra2;
+  printf "virktil  %40s %40s\n", $virktil1, $virktil2;
+}
+#
 # analyseTimeRanges - take a list of objects and analyze if the rules for bitemporarity has been vaiolated
 #
 sub analyseTimeRanges{
@@ -132,7 +162,7 @@ sub analyseTimeRanges{
     }
   }
   #
-  # Check for duplicates 
+  # Check for sequence 
   #
   for my $i (1..$numberofobjects-1) {
     my $j=$i-1;
@@ -162,13 +192,9 @@ sub analyseTimeRanges{
          ) {
       $rule = 7; 
       if ($debug) {
-        printf "Rule %d\n", $rule;
-        printf "Listname %40s %40s\n", $listname1, $listname2;
-        printf "uuid     %40s %40s\n", $uuid1, $uuid2;
-        printf "regfra   %40s %40s\n", $regfra1, $regfra2;
-        printf "regtil   %40s %40s\n", $regtil1, $regtil2;     
-        printf "virkfra  %40s %40s\n", $virkfra1, $virkfra2;
-        printf "virktil  %40s %40s\n", $virktil1, $virktil2;
+        duminfo($rule, $line1, $line2, $listname1, $listname2, 
+                $uuid1, $uuid2, $regfra1, $regfra2, $regtil1, $regtil2,
+                $virkfra1, $virkfra2, $virktil1, $virktil2)
 
       }
 
@@ -186,13 +212,9 @@ sub analyseTimeRanges{
          ) {
       $rule = 8; 
       if ($debug) {
-        printf "Rule %d\n", $rule;
-        printf "Listname %40s %40s\n", $listname1, $listname2;
-        printf "uuid     %40s %40s\n", $uuid1, $uuid2;
-        printf "regfra   %40s %40s\n", $regfra1, $regfra2;
-        printf "regtil   %40s %40s\n", $regtil1, $regtil2;     
-        printf "virkfra  %40s %40s\n", $virkfra1, $virkfra2;
-        printf "virktil  %40s %40s\n", $virktil1, $virktil2;
+        duminfo($rule, $line1, $line2, $listname1, $listname2, 
+                $uuid1, $uuid2, $regfra1, $regfra2, $regtil1, $regtil2,
+                $virkfra1, $virkfra2, $virktil1, $virktil2)
 
       }
       my @lines;
@@ -210,15 +232,9 @@ sub analyseTimeRanges{
       ) {
       $rule = 9; 
       if ($debug) {
-        printf "-------------------------------------------------------\n";
-        printf "Rule %d\n", $rule;
-        printf "L1:%40s\nL2:%40s\n", $line1,  $line2;
-        printf "Listname %40s %40s\n", $listname1, $listname2;
-        printf "uuid     %40s %40s\n", $uuid1, $uuid2;
-        printf "regfra   %40s %40s\n", $regfra1, $regfra2;
-        printf "regtil   %40s %40s\n", $regtil1, $regtil2;     
-        printf "virkfra  %40s %40s\n", $virkfra1, $virkfra2;
-        printf "virktil  %40s %40s\n", $virktil1, $virktil2;
+        duminfo($rule, $line1, $line2, $listname1, $listname2, 
+                $uuid1, $uuid2, $regfra1, $regfra2, $regtil1, $regtil2,
+                $virkfra1, $virkfra2, $virktil1, $virktil2)
       }
       my @lines;
       push(@lines, $line1, $line2);
@@ -234,15 +250,9 @@ sub analyseTimeRanges{
       ) {
       $rule = 10; 
       if ($debug) {
-        printf "-------------------------------------------------------\n";
-        printf "Rule %d\n", $rule;
-        printf "L1:%40s\nL2:%40s\n", $line1,  $line2;
-        printf "Listname %40s %40s\n", $listname1, $listname2;
-        printf "uuid     %40s %40s\n", $uuid1, $uuid2;
-        printf "regfra   %40s %40s\n", $regfra1, $regfra2;
-        printf "regtil   %40s %40s\n", $regtil1, $regtil2;     
-        printf "virkfra  %40s %40s\n", $virkfra1, $virkfra2;
-        printf "virktil  %40s %40s\n", $virktil1, $virktil2;
+        duminfo($rule, $line1, $line2, $listname1, $listname2, 
+                $uuid1, $uuid2, $regfra1, $regfra2, $regtil1, $regtil2,
+                $virkfra1, $virkfra2, $virktil1, $virktil2)
       }
       my @lines;
       push(@lines, $line1, $line2);
@@ -251,21 +261,128 @@ sub analyseTimeRanges{
     #   
     # Regel 11. Huller for virkningsintervaller
     #
-    if ( $uuid1 eq $uuid2 &&
-         ($virktil1 eq '0' || $virktil2 eq '0') &&
-         $virktil1 gt $virktil2
-      ) {
+    if ( $uuid1 eq $uuid2 && 
+        ( $virktil1 ne '0' && $virktil1 lt $virkfra2 )
+        ) {
       $rule = 11; 
       if ($debug) {
-        printf "-------------------------------------------------------\n";
-        printf "Rule %d\n", $rule;
-        printf "L1:%40s\nL2:%40s\n", $line1,  $line2;
-        printf "Listname %40s %40s\n", $listname1, $listname2;
-        printf "uuid     %40s %40s\n", $uuid1, $uuid2;
-        printf "regfra   %40s %40s\n", $regfra1, $regfra2;
-        printf "regtil   %40s %40s\n", $regtil1, $regtil2;     
-        printf "virkfra  %40s %40s\n", $virkfra1, $virkfra2;
-        printf "virktil  %40s %40s\n", $virktil1, $virktil2;
+        duminfo($rule, $line1, $line2, $listname1, $listname2, 
+                $uuid1, $uuid2, $regfra1, $regfra2, $regtil1, $regtil2,
+                $virkfra1, $virkfra2, $virktil1, $virktil2)
+      }
+      my @lines;
+      push(@lines, $line1, $line2);
+      reportincident($resfh, $rule, \@lines);
+    }
+    #   
+    # Regel 11. Huller for registreringsintervaller og virkningstintervaller
+    #
+    if ( $uuid1 eq $uuid2 && 
+        (
+          ( $regtil1  ne '0' && $regtil1  lt $regfra2 )  || 
+          ( $virktil2 ne '0' && $virktil2 lt $virkfra1 )
+        )
+       ) {
+      $rule = 11; 
+      if ($debug) {
+        duminfo($rule, $line1, $line2, $listname1, $listname2, 
+                $uuid1, $uuid2, $regfra1, $regfra2, $regtil1, $regtil2,
+                $virkfra1, $virkfra2, $virktil1, $virktil2)
+      }
+      my @lines;
+      push(@lines, $line1, $line2);
+      reportincident($resfh, $rule, \@lines);
+    }
+    #   
+    # Regel 12. Huller for registreringsintervaller og virkningsintervaller
+    #
+    if ( $uuid1 eq $uuid2 && 
+        (
+          ( $regtil1  ne '0' && $regtil1  lt $regfra2 ) ||
+          ( $virktil1 ne '0' && $virktil1 lt $virkfra2 )
+        )
+       ) {
+      $rule = 12; 
+      if ($debug) {
+        duminfo($rule, $line1, $line2, $listname1, $listname2, 
+                $uuid1, $uuid2, $regfra1, $regfra2, $regtil1, $regtil2,
+                $virkfra1, $virkfra2, $virktil1, $virktil2)
+      }
+      my @lines;
+      push(@lines, $line1, $line2);
+      reportincident($resfh, $rule, \@lines);
+    }
+    #   
+    # Regel 13. Overlap for registreringsintervaller og virkningsintervaller
+    #
+    if ( $uuid1 eq $uuid2 && 
+        (
+          ( $regtil1  ne '0' && $regfra1  lt $regtil2  && $regtil2  lt $regtil1  ) ||
+          ( $virktil1 ne '0' && $virkfra1 lt $virktil2 && $virktil2 lt $virktil1 )
+        )
+       ) {
+      $rule = 13;
+      if ($debug) {
+        duminfo($rule, $line1, $line2, $listname1, $listname2, 
+                $uuid1, $uuid2, $regfra1, $regfra2, $regtil1, $regtil2,
+                $virkfra1, $virkfra2, $virktil1, $virktil2)
+      }
+      my @lines;
+      push(@lines, $line1, $line2);
+      reportincident($resfh, $rule, \@lines);
+    }
+    #   
+    # Regel 14. Overlap for registreringsintervaller og virkningsintervaller
+    #
+    if ( $uuid1 eq $uuid2 && 
+        (
+          ( $regtil1  ne '0' && $regfra1  lt $regfra2  && $regfra2  lt $regtil1  ) ||
+          ( $virktil1 ne '0' && $virkfra1 lt $virkfra2 && $virkfra2 lt $virktil1 )
+        )
+       ) {
+      $rule = 14;
+      if ($debug) {
+        duminfo($rule, $line1, $line2, $listname1, $listname2, 
+                $uuid1, $uuid2, $regfra1, $regfra2, $regtil1, $regtil2,
+                $virkfra1, $virkfra2, $virktil1, $virktil2)
+      }
+      my @lines;
+      push(@lines, $line1, $line2);
+      reportincident($resfh, $rule, \@lines);
+    }
+    #   
+    # Regel 15. Overlap for registreringsintervaller og virkningsintervaller
+    #
+    if ( $uuid1 eq $uuid2 && 
+        (
+          ( $regtil1  ne '0' && $regtil1  lt $regtil2  && $regfra2  lt $regfra1  ) ||
+          ( $virktil1 ne '0' && $virktil1 lt $virktil2 && $virkfra2 lt $virkfra1 )
+        )
+       ) {
+      $rule = 15;
+      if ($debug) {
+        duminfo($rule, $line1, $line2, $listname1, $listname2, 
+                $uuid1, $uuid2, $regfra1, $regfra2, $regtil1, $regtil2,
+                $virkfra1, $virkfra2, $virktil1, $virktil2)
+      }
+      my @lines;
+      push(@lines, $line1, $line2);
+      reportincident($resfh, $rule, \@lines);
+    }
+    #   
+    # Regel 16. Overlap for registreringsintervaller og virkningsintervaller
+    #
+    if ( $uuid1 eq $uuid2 && 
+        (
+          ( $regtil2  ne '0' && $regfra1  lt $regfra2  && $regtil2  lt $regtil1  ) ||
+          ( $virktil2 ne '0' && $virkfra1 lt $virkfra2 && $virktil2 lt $virktil1 )
+        )
+       ) {
+      $rule = 16;
+      if ($debug) {
+        duminfo($rule, $line1, $line2, $listname1, $listname2, 
+                $uuid1, $uuid2, $regfra1, $regfra2, $regtil1, $regtil2,
+                $virkfra1, $virkfra2, $virktil1, $virktil2)
       }
       my @lines;
       push(@lines, $line1, $line2);
