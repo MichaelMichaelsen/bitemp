@@ -183,7 +183,7 @@ my $bytesize   = getSize($zipfile);
 my $averagelinesize = 40;
 my $recordsestimated = int($bytesize/$averagelinesize*1.2);
 printf "Data size %s (bytes)\n", $dk->format_bytes($bytesize);
-printf "Extimated number of lines %s\n", $dk->format_number($recordsestimated);
+printf "Estimated number of lines %s\n", $dk->format_number($recordsestimated);
 my $progress   = Term::ProgressBar->new($recordsestimated);
 my $next_update= 0;
 my $tbuf="";

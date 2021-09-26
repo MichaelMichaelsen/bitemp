@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="/media/mmi/SDFE-DATA/validation/Monitoring/BBR/MON-BBR-BBR-Totaludtraek-USER-JSON-V01_20200623083000/MON-BBR-BBR-Totaludtraek-USER-JSON-V01_20200623083000.db" foreign_keys="1"/><window><current_tab id="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1580"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="BBR"/><default_encoding codec=""/><browsetable_info data="AAAAAA=="/></tab_browse><tab_sql><sql name="SQL 2">select * from BBR
-where
-	UUID=&quot;5a1e0aed-5da8-46a5-b352-86b66d0e0b1d&quot;
-    and REGTIMETIL = &quot;&quot;
-	and VIRKTIMETIL == &quot;&quot;
-	and REGTIMEFRA = (select max(REGTIMEFRA) from BBR where  UUID=&quot;5a1e0aed-5da8-46a5-b352-86b66d0e0b1d&quot;) LIMIT 0, 50000;</sql><sql name="SQL 3">select count(*) from BBR where UUID =&quot;0009f34c-8370-490f-a8e6-5520c1f771b3&quot;</sql><sql name="SQL 4">select * from BBR where UUID =&quot;5a1e0aed-5da8-46a5-b352-86b66d0e0b1d&quot;</sql><sql name="SQL 5">select distinct uuid from BBR</sql><current_tab id="0"/></tab_sql></sqlb_project>
